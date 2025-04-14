@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import org.evolution.pixelparts.chargecontrol.ChargeControlFragment;
 import org.evolution.pixelparts.pixeltorch.PixelTorchActivity;
 import org.evolution.pixelparts.pixeltorch.PixelTorchFragment;
 import org.evolution.pixelparts.pixeltorch.PixelTorchButtonService;
@@ -23,10 +22,6 @@ public class Startup extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
-
-        // Charge control
-        ChargeControlFragment.restoreStartChargingSetting(context);
-        ChargeControlFragment.restoreStopChargingSetting(context);
 
         // PixelTorch
         ComponentUtils.toggleComponent(
