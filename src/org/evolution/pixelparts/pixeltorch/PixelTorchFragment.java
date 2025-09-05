@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2023-2024 The Evolution X Project
+ * SPDX-FileCopyrightText: The Evolution X Project
+ * SPDX-FileCopyrightText: crDroid Android Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -16,14 +17,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+
+import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 
 import org.evolution.pixelparts.Constants;
 import org.evolution.pixelparts.R;
 import org.evolution.pixelparts.utils.TileUtils;
 
-public class PixelTorchFragment extends PreferenceFragmentCompat
+public class PixelTorchFragment extends SettingsBasePreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private Preference mButtonServicePreference;

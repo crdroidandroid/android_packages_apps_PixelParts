@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2023-2024 The Evolution X Project
+ * SPDX-FileCopyrightText: The Evolution X Project
+ * SPDX-FileCopyrightText: crDroid Android Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -13,10 +14,10 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import com.android.settingslib.widget.MainSwitchPreference;
+import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 
 import org.evolution.pixelparts.Constants;
 import org.evolution.pixelparts.CustomSeekBarPreference;
@@ -27,7 +28,7 @@ import android.util.Log;
 import android.os.Handler;
 import android.os.Looper;
 
-public class ChargeControlFragment extends PreferenceFragmentCompat
+public class ChargeControlFragment extends SettingsBasePreferenceFragment
         implements OnCheckedChangeListener, Preference.OnPreferenceChangeListener {
 
     private static final String TAG = ChargeControlFragment.class.getSimpleName();

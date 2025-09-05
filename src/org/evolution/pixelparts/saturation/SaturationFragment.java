@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2023-2024 The Evolution X Project
+ * SPDX-FileCopyrightText: The Evolution X Project
+ * SPDX-FileCopyrightText: crDroid Android Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -23,6 +24,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.settingslib.widget.LayoutPreference;
+import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 
 import org.evolution.pixelparts.Constants;
 import org.evolution.pixelparts.CustomSeekBarPreference;
@@ -30,7 +32,7 @@ import org.evolution.pixelparts.R;
 
 import java.util.Arrays;
 
-public class SaturationFragment extends PreferenceFragmentCompat
+public class SaturationFragment extends SettingsBasePreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private View mViewArrowPrevious;
