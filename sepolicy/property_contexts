@@ -1,0 +1,8 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+persist.vendor.pixelparts.    u:object_r:vendor_pixelparts_prop:s0

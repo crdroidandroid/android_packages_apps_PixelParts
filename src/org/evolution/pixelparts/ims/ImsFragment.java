@@ -9,10 +9,12 @@ package org.evolution.pixelparts.ims;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.telephony.SubscriptionInfo;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.SwitchPreferenceCompat;
@@ -33,6 +35,11 @@ public class ImsFragment extends SettingsBasePreferenceFragment {
     private static final String KEY_SIM_CATEGORY = "ims_sim_category";
     private static final String KEY_FOOTER = "ims_footer";
     private static final String KEY_RESTART_MODEM = "ims_restart_modem";
+    private static final String KEY_MBN_PROFILE = "mbn_profile";
+
+    /** Read by init, which binds the matching index over the stock one. */
+    private static final String PROP_MBN_PROFILE = "persist.vendor.pixelparts.mbn";
+    private static final String MBN_STOCK = "stock";
 
     private ImsController mController;
 
@@ -46,6 +53,8 @@ public class ImsFragment extends SettingsBasePreferenceFragment {
         // first boot where telephony is not up yet, and bootlooped the device.
         mController.start();
 
+        setUpMbnProfile();
+
         final Preference restart = findPreference(KEY_RESTART_MODEM);
         if (restart != null) {
             // The modem only notices a new configuration when it re-selects.
@@ -55,6 +64,50 @@ public class ImsFragment extends SettingsBasePreferenceFragment {
                 return true;
             });
         }
+    }
+
+    /**
+     * The property is the source of truth, not the preference store: init acts
+     * on the property, and the two must not drift.
+     */
+    private void setUpMbnProfile() {
+        final ListPreference profile = findPreference(KEY_MBN_PROFILE);
+        if (profile == null) {
+            return;
+        }
+        profile.setPersistent(false);
+        profile.setValue(SystemProperties.get(PROP_MBN_PROFILE, MBN_STOCK));
+        profile.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+        profile.setOnPreferenceChangeListener((preference, newValue) -> {
+            final String value = (String) newValue;
+            if (MBN_STOCK.equals(value)) {
+                applyMbnProfile(profile, value);
+            } else {
+                confirmMbnProfile(profile, value);
+            }
+            return false;
+        });
+    }
+
+    private void confirmMbnProfile(ListPreference profile, String value) {
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.mbn_profile_warning_title)
+                .setMessage(R.string.mbn_profile_warning_message)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(R.string.ims_warning_confirm,
+                        (dialog, which) -> applyMbnProfile(profile, value))
+                .show();
+    }
+
+    private void applyMbnProfile(ListPreference profile, String value) {
+        SystemProperties.set(PROP_MBN_PROFILE, value);
+        profile.setValue(value);
+        // init has rebound the index, but the modem only reads it when it
+        // selects again.
+        final boolean ok = mController.restartModem();
+        Toast.makeText(getContext(),
+                ok ? R.string.ims_restart_modem_done : R.string.ims_restart_modem_failed,
+                Toast.LENGTH_LONG).show();
     }
 
     private void confirmRestartModem() {

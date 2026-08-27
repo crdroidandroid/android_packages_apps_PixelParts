@@ -1,0 +1,11 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+vendor_internal_prop(vendor_pixelparts_prop)
+
+# The app selects the modem configuration profile; init acts on it.
+set_prop(pixelparts_app, vendor_pixelparts_prop)

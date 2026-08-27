@@ -81,6 +81,11 @@ def main():
     with open("mcfg_sw/oem_sw_mod.txt", "w") as fh:
         fh.writelines("mcfg_sw/%s\n" % c for c in configs)
 
+    # Stock ships no oem_sw.txt. An empty one is installed under the real name
+    # so the toggle has something to bind mbn/oem_sw_mod.txt over; a bind mount
+    # cannot create its own target.
+    open("mcfg_sw/oem_sw_empty.txt", "w").close()
+
     installed = sorted(
         p for p in (
             os.path.join(d, f).replace(os.sep, "/")
@@ -88,11 +93,13 @@ def main():
             for f in fs
         )
     )
+    lines = ["    packages/apps/PixelParts/mbn/%s:%s/mbn/%s" % (p, DEST, p)
+             for p in installed if p != "mcfg_sw/oem_sw_empty.txt"]
+    lines.append("    packages/apps/PixelParts/mbn/mcfg_sw/oem_sw_empty.txt:"
+                 "%s/mbn/mcfg_sw/oem_sw.txt" % DEST)
     with open("mbn.mk", "w") as fh:
         fh.write(PREAMBLE.format(dest=DEST))
-        fh.write(BACKSLASH.join(
-            "    packages/apps/PixelParts/mbn/%s:%s/mbn/%s" % (p, DEST, p)
-            for p in installed) + "\n")
+        fh.write(BACKSLASH.join(lines) + "\n")
 
     print("%d configurations; merged index %d entries (%d stock kept), "
           "module-only index %d; %d files installed"

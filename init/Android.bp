@@ -20,3 +20,12 @@ prebuilt_etc {
     sub_dir: "init",
     vendor: true,
 }
+
+// Bind mounting the modem configuration index is only permitted for init, so
+// this half has to be system_ext - see the comment in the file itself.
+prebuilt_etc {
+    name: "init.pixelparts_mbn.rc",
+    src: "init.pixelparts_mbn.rc",
+    sub_dir: "init",
+    system_ext_specific: true,
+}

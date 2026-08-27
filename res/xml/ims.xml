@@ -17,6 +17,20 @@
         android:key="ims_sim_category"
         android:title="@string/ims_sim_category_title" />
 
+    <PreferenceCategory
+        android:key="mbn_category"
+        android:title="@string/mbn_category_title">
+
+        <ListPreference
+            android:key="mbn_profile"
+            android:title="@string/mbn_profile_title"
+            android:summary="@string/mbn_profile_summary"
+            android:entries="@array/mbn_profile_entries"
+            android:entryValues="@array/mbn_profile_values"
+            android:defaultValue="stock" />
+
+    </PreferenceCategory>
+
     <Preference
         android:key="ims_restart_modem"
         android:title="@string/ims_restart_modem_title"

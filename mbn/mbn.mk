@@ -357,4 +357,5 @@ PRODUCT_COPY_FILES += \
     packages/apps/PixelParts/mbn/mcfg_sw/generic/Pixel/common/W_One/Commercial/mcfg_sw.mbn:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/generic/Pixel/common/W_One/Commercial/mcfg_sw.mbn \
     packages/apps/PixelParts/mbn/mcfg_sw/mbn_sw_merged.txt:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw_merged.txt \
     packages/apps/PixelParts/mbn/mcfg_sw/mbn_sw_module.txt:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw_module.txt \
-    packages/apps/PixelParts/mbn/mcfg_sw/oem_sw_mod.txt:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw_mod.txt
+    packages/apps/PixelParts/mbn/mcfg_sw/oem_sw_mod.txt:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw_mod.txt \
+    packages/apps/PixelParts/mbn/mcfg_sw/oem_sw_empty.txt:$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt

@@ -44,4 +44,14 @@
     <string name="ims_restart_modem_confirm">Restart</string>
     <string name="ims_restart_modem_done">Restarting modem\u2026</string>
     <string name="ims_restart_modem_failed">This modem does not support restarting. Reboot to apply.</string>
+
+    <!-- Modem carrier configurations -->
+    <string name="mbn_category_title">Carrier configurations</string>
+    <string name="mbn_profile_title">Modem configuration set</string>
+    <string name="mbn_profile_summary">Which set of carrier configurations the modem may choose from. Takes effect after the modem restarts.</string>
+    <string name="mbn_profile_stock">Stock only</string>
+    <string name="mbn_profile_merged">Stock plus extra carriers</string>
+    <string name="mbn_profile_module">Extra carriers only</string>
+    <string name="mbn_profile_warning_title">Replacing carrier configurations</string>
+    <string name="mbn_profile_warning_message">These configurations are not from your carrier and are not certified for this device. Mobile data, calling and emergency calling may stop working until you set this back to stock.\n\nChoosing \"Extra carriers only\" drops the configurations your phone shipped with, which may break a carrier that works today.</string>
 </resources>

@@ -1,0 +1,40 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# system_ext, not vendor, and deliberately so. system/sepolicy has
+#
+#     neverallow { domain -init ... } { system_file_type vendor_file_type }
+#                 :dir_file_class_set mounton;
+#
+# so only init may bind over a vendor file - vendor_init is not exempt, and
+# commands in /vendor/etc/init run as vendor_init. The chowns in
+# init.pixelparts.rc need the opposite, which is why these live apart.
+# Extra modem carrier configurations, off by default.
+#
+# The configurations ship unindexed, so stock's own mbn_sw.txt is what the
+# modem reads until asked otherwise. Enabling binds an alternate index over
+# the real names. Persistent properties load at post-fs-data and the modem
+# starts from on boot, so this lands before the modem reads its index.
+#
+# umount first because the trigger also fires when switching between profiles,
+# and it is harmless when nothing is mounted.
+
+on property:persist.vendor.pixelparts.mbn=merged
+    umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt
+    umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt
+    mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw_merged.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt bind
+    mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw_mod.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt bind
+
+on property:persist.vendor.pixelparts.mbn=module
+    umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt
+    umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt
+    mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw_module.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt bind
+    mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw_mod.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt bind
+
+on property:persist.vendor.pixelparts.mbn=stock
+    umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt
+    umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt

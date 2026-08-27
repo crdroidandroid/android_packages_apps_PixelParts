@@ -11,7 +11,8 @@ PRODUCT_PACKAGES += \
 
 # PixelParts init rc
 PRODUCT_PACKAGES += \
-    init.pixelparts.rc
+    init.pixelparts.rc \
+    init.pixelparts_mbn.rc
 
 # PixelParts privileged permission allowlist. Required even though the app is
 # platform signed; without it the first boot fails under
