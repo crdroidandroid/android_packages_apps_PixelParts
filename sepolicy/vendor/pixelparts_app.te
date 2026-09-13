@@ -1,0 +1,10 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# hbm_mode, under the panel backlight. vendor_init chowns it to system:system;
+# it needs no rule of its own, having rw on every sysfs_type already.
+allow pixelparts_app vendor_sysfs_hbm:file rw_file_perms;

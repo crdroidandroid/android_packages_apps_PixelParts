@@ -21,7 +21,7 @@ import org.evolution.pixelparts.utils.ComponentUtils;
 public class Startup extends BroadcastReceiver {
 
     /** Read by init, which binds the matching index over the stock one. */
-    private static final String PROP_MBN_PROFILE = "persist.vendor.pixelparts.mbn";
+    private static final String PROP_MBN_PROFILE = "persist.sys.pixelparts.mbn";
     private static final String MBN_STOCK = "stock";
 
     @Override

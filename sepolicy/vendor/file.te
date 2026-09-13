@@ -1,0 +1,8 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+type vendor_sysfs_hbm, fs_type, sysfs_type;

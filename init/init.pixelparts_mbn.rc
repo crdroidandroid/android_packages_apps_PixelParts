@@ -23,18 +23,18 @@
 # umount first because the trigger also fires when switching between profiles,
 # and it is harmless when nothing is mounted.
 
-on property:persist.vendor.pixelparts.mbn=merged
+on property:persist.sys.pixelparts.mbn=merged
     umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt
     umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt
     mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw_merged.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt bind
     mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw_mod.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt bind
 
-on property:persist.vendor.pixelparts.mbn=module
+on property:persist.sys.pixelparts.mbn=module
     umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt
     umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt
     mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw_module.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt bind
     mount none /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw_mod.txt /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt bind
 
-on property:persist.vendor.pixelparts.mbn=stock
+on property:persist.sys.pixelparts.mbn=stock
     umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/mbn_sw.txt
     umount /vendor/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw/oem_sw.txt

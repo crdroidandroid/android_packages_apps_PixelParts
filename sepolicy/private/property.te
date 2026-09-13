@@ -1,0 +1,14 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# system_ext, not vendor: property.te neverallows coredomain from setting any
+# vendor property, and the app is coredomain. Nothing on vendor reads this -
+# only the app writes it and init acts on it.
+system_internal_prop(pixelparts_prop)
+
+# The app selects the modem configuration profile; init acts on it.
+set_prop(pixelparts_app, pixelparts_prop)

@@ -38,7 +38,7 @@ public class ImsFragment extends SettingsBasePreferenceFragment {
     private static final String KEY_MBN_PROFILE = "mbn_profile";
 
     /** Read by init, which binds the matching index over the stock one. */
-    private static final String PROP_MBN_PROFILE = "persist.vendor.pixelparts.mbn";
+    private static final String PROP_MBN_PROFILE = "persist.sys.pixelparts.mbn";
     private static final String MBN_STOCK = "stock";
 
     private ImsController mController;

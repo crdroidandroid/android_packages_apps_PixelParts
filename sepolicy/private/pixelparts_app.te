@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-type pixelparts_app, domain;
+typeattribute pixelparts_app coredomain;
 typeattribute pixelparts_app mlstrustedsubject;
 
 app_domain(pixelparts_app)
@@ -20,6 +20,8 @@ allow pixelparts_app system_app_data_file:dir create_dir_perms;
 allow pixelparts_app system_app_data_file:{ file lnk_file } create_file_perms;
 allow pixelparts_app system_data_file:dir search;
 
-# hbm_mode, under the panel backlight
+# Traversal only. hbm_mode itself is relabeled away from sysfs_leds by the
+# vendor half of this policy, because coredomain.te neverallows every
+# coredomain but init, apexd, ueventd, vold and system_app on sysfs_leds:file.
+# The dir class is not covered by that neverallow.
 allow pixelparts_app sysfs_leds:dir r_dir_perms;
-allow pixelparts_app sysfs_leds:file rw_file_perms;

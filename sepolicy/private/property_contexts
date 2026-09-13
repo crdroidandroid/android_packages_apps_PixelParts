@@ -5,4 +5,4 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-persist.vendor.pixelparts.    u:object_r:vendor_pixelparts_prop:s0
+persist.sys.pixelparts.    u:object_r:pixelparts_prop:s0

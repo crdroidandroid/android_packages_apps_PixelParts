@@ -1,0 +1,11 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# The device labels the whole backlight subtree sysfs_leds, which no coredomain
+# may write. Longest prefix wins, so carving out this one node leaves the rest
+# of the subtree - brightness, als_table, the panel's own nodes - untouched.
+genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary/backlight/panel0-backlight/hbm_mode u:object_r:vendor_sysfs_hbm:s0

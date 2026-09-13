@@ -1,0 +1,10 @@
+#
+# Copyright (C) 2024 The Evolution X Project
+#               2024 crDroid Android Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Public only so that the vendor half of this policy can name the domain when
+# it grants hbm_mode. coredomain and every allow rule stay private.
+type pixelparts_app, domain;
